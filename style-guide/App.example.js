@@ -1,10 +1,11 @@
-// Style Guide:
-// In this file you can find a reference example of the structure
-// and content that the component should render.
-// Remember to import Ant Design components before using them.
-import { Row, Divider, Button } from 'antd';
+import React, { useState } from "react";
+import foods from "./foods.json";
+import FoodBox from "./components/FoodBox";import { Row, Divider, Button } from 'antd';
 
 function App() {
+  
+  const [foodList, setFoodList] = useState(foods);
+
   return (
     <div className="App">
       {/* Display Add Food component here */}
@@ -16,7 +17,11 @@ function App() {
       <Divider>Food List</Divider>
 
       <Row style={{ width: '100%', justifyContent: 'center' }}>
-        {/* Render the list of Food Box components here */}
+      <div className="food-list">
+        {foodList.map((food) => (
+          <FoodBox key={food.id} food={food} />
+        ))}
+      </div>
       </Row>
     </div>
   );

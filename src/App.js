@@ -1,23 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import foods from "./foods.json";
+import FoodBox from "./components/FoodBox";
+import { Row, Divider } from "antd";
+import AddFoodForm from "./components/AddFoodForm";
+import Search from "./components/Search";
 
 function App() {
+  const [foodList, setFoodList] = useState(foods);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const addNewFood = (newFood) => {
+    setFoodList([...foodList, newFood]);
+  };
+
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const filteredFoodList = foodList.filter((food) =>
+    food.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // const handleDelete = (id) => {
+  //   setFoodList(foodList.filter((foodItem) => foodItem.id !== id));
+  // }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AddFoodForm addNewFood={addNewFood} />
+
+      {/* Display Search component here */}
+      <Search handleSearch={handleSearch} />
+
+      <Divider>Food List</Divider>
+
+      <Row style={{ width: "100%", justifyContent: "center" }}>
+        <div className="food-list">
+          {filteredFoodList.map((food) => (
+            <FoodBox
+  key={food.id}
+  food={food}
+  setFood={setFoodList} // pass setFoodList as a prop
+/>
+          ))}
+        </div>
+      </Row>
     </div>
   );
 }
