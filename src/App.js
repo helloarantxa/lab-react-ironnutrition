@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import foods from "./foods.json";
-import FoodBox from "./components/FoodBox";
-import { Row, Divider } from "antd";
-import AddFoodForm from "./components/AddFoodForm";
-import Search from "./components/Search";
+import React, { useState } from 'react';
+import foods from './foods.json';
+import FoodBox from './components/FoodBox';
+import { Row, Divider } from 'antd';
+import AddFoodForm from './components/AddFoodForm';
+import Search from './components/Search';
 
 function App() {
   const [foodList, setFoodList] = useState(foods);
@@ -21,9 +21,9 @@ function App() {
     food.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // const handleDelete = (id) => {
-  //   setFoodList(foodList.filter((foodItem) => foodItem.id !== id));
-  // }
+  const handleDelete = (id) => {
+    setFoodList(foodList.filter((foodItem) => foodItem.id !== id));
+  };
 
   return (
     <div className="App">
@@ -34,14 +34,16 @@ function App() {
 
       <Divider>Food List</Divider>
 
-      <Row style={{ width: "100%", justifyContent: "center" }}>
+      <Row style={{ width: '100%', justifyContent: 'center' }}>
         <div className="food-list">
           {filteredFoodList.map((food) => (
             <FoodBox
-  key={food.id}
-  food={food}
-  setFood={setFoodList} // pass setFoodList as a prop
-/>
+              key={food.id}
+              food={food}
+              foodList={foodList}
+              setFoodList={setFoodList}
+              clickHandler={handleDelete}
+            />
           ))}
         </div>
       </Row>

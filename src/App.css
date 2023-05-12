@@ -1,11 +1,23 @@
+
 .App {
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.food-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: 0 auto;
 }
+
+.FoodBox {
+  width: 200px;
+  margin-bottom: 16px;
+}
+
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

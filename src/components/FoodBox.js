@@ -4,13 +4,15 @@ import { Card, Col, Button } from "antd";
 function FoodBox({ food, foodList, setFoodList }) {
 
   const handleDelete = (name) => {
-    setFoodList([...foodList].filter((food)=> food.name !== name));
-    // setFood(food.filter((foodItem) => foodItem.name !== name));
+    setFoodList(foodList.filter((food)=> food.name !== name));
   };
 
   return (
     <Col>
-      <Card title={food.name} style={{ width: 230, height: 300, margin: 10 }}>
+      <Card 
+        title={food.name} 
+        style={{ width: 230, height: 300, margin: 10 }}
+        >
         <img src={food.image} height={60} alt="food" />
         <p>Calories: {food.calories}</p>
         <p>Servings: {food.servings}</p>

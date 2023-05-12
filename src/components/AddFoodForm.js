@@ -1,8 +1,6 @@
 import { Divider, Input } from 'antd';
 import React, {useState} from 'react';
 
-
-
 // Iteration 4
 function AddFoodForm({addNewFood}) {
 const [name, setName]= useState('');
